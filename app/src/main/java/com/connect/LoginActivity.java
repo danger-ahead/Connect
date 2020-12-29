@@ -1,6 +1,5 @@
 package com.connect;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth firebaseAuth;
 
     //progress dialog
-    private ProgressDialog progressDialog;
+    private ProgressBar progressDialog;
 
 
     @Override
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         buttonSignIn = (Button) findViewById(R.id.buttonSignin);
         textViewSignup  = (TextView) findViewById(R.id.textViewSignUp);
 
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressBar(this);
 
         //attaching click listener
         buttonSignIn.setOnClickListener(this);
@@ -81,17 +81,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         //if the email and password are not empty
-        //displaying a progress dialog
+        //displaying a progress bar
 
-        progressDialog.setMessage("Registering Please Wait...");
-        progressDialog.show();
+        progressDialog.setVisibility(View.VISIBLE);
 
         //logging in the user
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                        progressDialog.setVisibility(View.GONE);
                         //if the task is successfull
                         if(task.isSuccessful()){
                             //start the profile activity
@@ -111,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(view == textViewSignup){
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this,  SignUpActivity.class));
         }
     }
 }

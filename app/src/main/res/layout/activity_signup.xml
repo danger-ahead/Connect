@@ -16,15 +16,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Registration"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal" />
-
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"

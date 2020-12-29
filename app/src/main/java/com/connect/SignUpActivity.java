@@ -1,6 +1,5 @@
 package com.connect;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -8,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private TextView textViewSignin;
 
-    private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
 
 
     //defining firebaseauth object
@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
 
-        progressDialog = new ProgressDialog(this);
+        progressBar = new ProgressBar(this);
 
         //attaching listener to button
         buttonSignup.setOnClickListener(new View.OnClickListener() {
@@ -94,10 +94,9 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         //if the email and password are not empty
-        //displaying a progress dialog
+        //displaying a progress bar
 
-        progressDialog.setMessage("Registering Please Wait...");
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
 
         //creating a new user
         firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -112,23 +111,9 @@ public class SignUpActivity extends AppCompatActivity {
                             //display some message here
                             Toast.makeText(SignUpActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
                         }
-                        progressDialog.dismiss();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
 
     }
-
-    /*@Override
-    public void onClick(View view) {
-
-        if(view == buttonSignup){
-            registerUser();
-        }
-
-        if(view == textViewSignin){
-            //open login activity when user taps on the already registered textview
-            startActivity(new Intent(this, LoginActivity.class));
-        }
-
-    } */
 }
