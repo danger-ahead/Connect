@@ -73,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //open login activity when user taps on the already registered textview
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
             }
         });
     }
