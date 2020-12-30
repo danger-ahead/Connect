@@ -3,21 +3,34 @@ package com.connect;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+//import android.text.TextUtils;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+//import android.widget.TextView;
+import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//import com.google.firebase.database.DataSnapshot;
+//import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.ValueEventListener;
+
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //firebase auth object
-    private FirebaseAuth firebaseAuth;
+    //private static final String TAG = ProfileActivity.class.getSimpleName();
+    //private TextView txtDetails;
+    private EditText inputName, inputPhone;
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
 
-    //view objects
-    private TextView textViewUserEmail;
+    private String userId;
     private Button buttonLogout;
+
+    private FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -28,28 +41,44 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //if the user is not logged in
-        //that means current user will return null
-        if(firebaseAuth.getCurrentUser() == null){
-            //closing this activity
+        inputName = findViewById(R.id.name);
+        inputPhone = findViewById(R.id.phnum);
+        Button btnSave = findViewById(R.id.btn_save);
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+         if (user == null) {
+            //closing activity
             finish();
             //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        //getting current user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        //initializing views
-
-        //textViewUserEmail = findViewById(R.id.textViewUserEmail);
         buttonLogout = findViewById(R.id.logout);
 
-        //displaying logged in user name
-        //textViewUserEmail.setText("Welcome "+user.getEmail());
-
-        //adding listener to button
         buttonLogout.setOnClickListener(this);
+
+        FirebaseUser FBuser = FirebaseAuth.getInstance().getCurrentUser();
+        if (FBuser != null){
+            userId = FBuser.getUid();
+        }
+
+        btnSave.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String name = inputName.getText().toString();
+                String phonenumber = inputPhone.getText().toString();
+
+                    createUser(name, phonenumber);
+            }
+        });
+    }
+
+    public void createUser(String name, String phonenumber) {
+        User user = new User(name, phonenumber);
+        mFirebaseDatabase = mFirebaseInstance.getReference("users");
+        mFirebaseDatabase.child(userId).setValue(user);
     }
 
     @Override
@@ -65,3 +94,5 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 }
+
+/*DANGER-AHEAD 30-12-2020*/

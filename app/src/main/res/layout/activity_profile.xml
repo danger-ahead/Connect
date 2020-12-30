@@ -15,6 +15,7 @@
         android:id="@+id/txt_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Save your profile details"
         android:paddingBottom="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_horizontal_margin"
         android:textSize="20dp" />
@@ -43,10 +44,10 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/phnum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="Phone Number"
                 android:inputType="textEmailAddress"
                 android:maxLines="1" />
 
