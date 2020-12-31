@@ -1,6 +1,5 @@
 package com.connect;
 
-import android.app.MediaRouteButton;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,9 +30,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
-
-    //progress dialog
-    private ProgressBar progressDialog;
 
 
     @Override

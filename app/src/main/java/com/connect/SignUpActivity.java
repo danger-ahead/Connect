@@ -116,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         }else{
                             //display some message here
-                            Toast.makeText(SignUpActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity.this,"Error, check internet connection.",Toast.LENGTH_LONG).show();
                         }
                        // progressBar.setVisibility(View.GONE);
                     }
