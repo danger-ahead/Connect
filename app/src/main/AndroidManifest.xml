@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".users_prof"
-            android:label="@string/title_activity_users_prof"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProfileActivity" />
