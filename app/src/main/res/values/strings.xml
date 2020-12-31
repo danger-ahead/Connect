@@ -13,6 +13,4 @@
     <string name="get_in">Get in!</string>
     <string name="log_in">Log in!</string>
     <string name="about_us">About us</string>
-    <string name="title_activity_users_prof">ScrollingActivity</string>
-    <string name="action_settings">Settings</string>
 </resources>
