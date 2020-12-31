@@ -1,8 +1,11 @@
 package com.connect;
 
 import android.content.Intent;
+
+//import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+//import android.text.TextUtils;
 //import android.text.TextUtils;
 //import android.util.Log;
 import android.view.View;
@@ -17,11 +20,12 @@ import com.google.firebase.auth.FirebaseUser;
 //import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.Query;
 //import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //private static final String TAG = ProfileActivity.class.getSimpleName();
+    private static final String TAG = ProfileActivity.class.getSimpleName();
     //private TextView txtDetails;
     private EditText inputName, inputPhone;
     private DatabaseReference mFirebaseDatabase;
@@ -43,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         inputName = findViewById(R.id.name);
         inputPhone = findViewById(R.id.phnum);
-        Button btnSave = findViewById(R.id.btn_save);
+        final Button btnSave = findViewById(R.id.btn_save);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
@@ -55,14 +59,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        buttonLogout = findViewById(R.id.logout);
-
-        buttonLogout.setOnClickListener(this);
-
         FirebaseUser FBuser = FirebaseAuth.getInstance().getCurrentUser();
         if (FBuser != null){
             userId = FBuser.getUid();
         }
+
 
         btnSave.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -70,9 +71,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 String name = inputName.getText().toString();
                 String phonenumber = inputPhone.getText().toString();
 
-                    createUser(name, phonenumber);
+                createUser(name, phonenumber);
+                openUsersProfActivity();
+                finish(); //killing ProfileActivity.java
             }
         });
+
+        buttonLogout = findViewById(R.id.logout);
+        buttonLogout.setOnClickListener(this);
+    }
+
+    public void openUsersProfActivity(){
+
+        Intent intent = new Intent(this, users_prof.class);  //opening users_prof.java activity
+        startActivity(intent);
     }
 
     public void createUser(String name, String phonenumber) {
