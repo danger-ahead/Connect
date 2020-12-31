@@ -1,5 +1,6 @@
 package com.connect;
 
+import android.app.MediaRouteButton;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewSignup;
+    private TextView forgot;
+
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -55,42 +58,49 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignin);
         textViewSignup  = (TextView) findViewById(R.id.textViewSignUp);
+        forgot= (TextView) findViewById(R.id.forgotpswd);
 
-        progressDialog = new ProgressBar(this);
+
+
 
         //attaching click listener
         buttonSignIn.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
+        forgot.setOnClickListener(this);
     }
 
     //method for user login
     private void userLogin(){
         String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
+        //if the email and password are not empty
+        //displaying a progress bar
+
 
 
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
+            final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+            simpleProgressBar.setVisibility(View.GONE);
             return;
         }
 
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
+            final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+            simpleProgressBar.setVisibility(View.GONE);
             return;
         }
 
-        //if the email and password are not empty
-        //displaying a progress bar
 
-        progressDialog.setVisibility(View.VISIBLE);
 
         //logging in the user
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.setVisibility(View.GONE);
+                        //progressDialog.setVisibility(View.GONE);
                         //if the task is successfull
                         if(task.isSuccessful()){
                             //start the profile activity
@@ -105,6 +115,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if(view == buttonSignIn){
+
+            final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+            simpleProgressBar.setVisibility(View.VISIBLE);
             userLogin();
         }
 
@@ -112,5 +125,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
             startActivity(new Intent(this,  SignUpActivity.class));
         }
+        if(view == forgot){
+            startActivity(new Intent(this,  ForgotActivity.class));
+        }
+
     }
 }

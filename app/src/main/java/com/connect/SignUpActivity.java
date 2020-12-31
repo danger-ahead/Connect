@@ -73,7 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //open login activity when user taps on the already registered textview
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                finish();
+                finish(); //this should work
             }
         });
     }
@@ -86,20 +86,26 @@ public class SignUpActivity extends AppCompatActivity {
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
+            final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+            simpleProgressBar.setVisibility(View.GONE);
             return;
         }
 
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
+            final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+            simpleProgressBar.setVisibility(View.GONE);
             return;
         }
 
         //if the email and password are not empty
         //displaying a progress bar
 
-        progressBar.setVisibility(View.VISIBLE);
+        //progressBar.setVisibility(View.VISIBLE);
 
         //creating a new user
+        final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        simpleProgressBar.setVisibility(View.VISIBLE);
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -112,7 +118,7 @@ public class SignUpActivity extends AppCompatActivity {
                             //display some message here
                             Toast.makeText(SignUpActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
                         }
-                        progressBar.setVisibility(View.GONE);
+                       // progressBar.setVisibility(View.GONE);
                     }
                 });
 
