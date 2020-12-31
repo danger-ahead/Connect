@@ -13,19 +13,20 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ForgotActivity"></activity>
         <activity
-            android:name=".AboutActivity"
-            android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme.NoActionBar" />
-            <activity
             android:name=".users_prof"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar" />
+
+       <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme.NoActionBar" />           
             
 
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity">
+            <activity android:name=".LoginActivity" />
+            <activity android:name=".ProfileActivity" />
+            <activity android:name=".SignUpActivity" />
+            <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
