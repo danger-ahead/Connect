@@ -46,6 +46,12 @@
             android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <ProgressBar
+            android:id="@+id/simpleProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
