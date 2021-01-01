@@ -1,5 +1,6 @@
 package com.connect;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -46,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //close this activity
             finish();
             //opening profile activity
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(), users_prof.class));
         }
 
         //initializing views
@@ -55,9 +57,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         buttonSignIn = (Button) findViewById(R.id.buttonSignin);
         textViewSignup  = (TextView) findViewById(R.id.textViewSignUp);
         forgot= (TextView) findViewById(R.id.forgotpswd);
-
-
-
 
         //attaching click listener
         buttonSignIn.setOnClickListener(this);
@@ -71,8 +70,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password  = editTextPassword.getText().toString().trim();
         //if the email and password are not empty
         //displaying a progress bar
-
-
 
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
@@ -89,19 +86,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-
-
         //logging in the user
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        //progressDialog.setVisibility(View.GONE);
                         //if the task is successfull
                         if(task.isSuccessful()){
-                            //start the profile activity
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            alert_dialog();     //start the prompt dialog
+                        }
+                        else{
+                            //display some message here
+                            Toast.makeText(LoginActivity.this,"Error, check internet connection.",Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -125,5 +121,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(this,  ForgotActivity.class));
         }
 
+    }
+    private void alert_dialog(){
+        new MaterialAlertDialogBuilder(LoginActivity.this, R.style.RoundShapeTheme).setTitle("Welcome Back :D").setMessage("Do you want to update your profile?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        finish();
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            startActivity(new Intent(getApplicationContext(), users_prof.class));
+                            Toast.makeText(LoginActivity.this,"You're in!",Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+        }).show();
     }
 }

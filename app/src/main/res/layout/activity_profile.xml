@@ -50,7 +50,6 @@
                 android:hint="Phone Number"
                 android:inputType="textEmailAddress"
                 android:maxLines="1" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -59,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/rounded_corner"
             android:text="Save"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -70,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/rounded_corner"
             android:text="Logout :("
             android:textColor="@android:color/white"
             android:textStyle="bold" />
