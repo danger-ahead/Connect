@@ -9,4 +9,6 @@ keystore.properties
 *.iml
 *.aab
 /build
+/.settings/
 /.gradle
+.project

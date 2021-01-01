@@ -14,6 +14,13 @@
     <string name="log_in">Log in!</string>
     <string name="about_us">About us</string>
     <string name="title_activity_about">AboutActivity</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_pass">Enter password</string>
+    <string name="alre">Already Registered? Sign in here</string>
+    <string name="signup">Signup</string>
+    <string name="NotAcc">Not have an account? Signup Here</string>
+    <string name="forpass">Forgot Password?</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

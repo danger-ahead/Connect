@@ -1,5 +1,6 @@
 package com.connect;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,11 +26,6 @@ public class SignUpActivity extends AppCompatActivity {
     //defining view objects
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private Button buttonSignup;
-
-    private TextView textViewSignin;
-
-    private ProgressBar progressBar;
 
 
     //defining firebaseauth object
@@ -49,17 +46,15 @@ public class SignUpActivity extends AppCompatActivity {
             finish();
 
             //and open profile activity
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(), users_prof.class));
         }
 
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+        TextView textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
-        buttonSignup = (Button) findViewById(R.id.buttonSignup);
-
-        progressBar = new ProgressBar(this);
+        Button buttonSignup = (Button) findViewById(R.id.buttonSignup);
 
         //attaching listener to button
         buttonSignup.setOnClickListener(new View.OnClickListener() {
@@ -98,29 +93,40 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        //if the email and password are not empty
-        //displaying a progress bar
-
-        //progressBar.setVisibility(View.VISIBLE);
-
         //creating a new user
         final ProgressBar simpleProgressBar = (ProgressBar) findViewById(R.id.simpleProgressBar);
         simpleProgressBar.setVisibility(View.VISIBLE);
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if(task.isSuccessful()){
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        }else{
+                            alert_dialog();
+                        }
+                        else{
                             //display some message here
                             Toast.makeText(SignUpActivity.this,"Error, check internet connection.",Toast.LENGTH_LONG).show();
                         }
-                       // progressBar.setVisibility(View.GONE);
                     }
                 });
 
     }
+    private void alert_dialog(){
+        new MaterialAlertDialogBuilder(SignUpActivity.this, R.style.RoundShapeTheme).setTitle("Hey there!").setMessage("You need to create a profile")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        finish();
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getApplicationContext(), users_prof.class));
+                        Toast.makeText(SignUpActivity.this,"You're continuing without a profile",Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                }).show();
+    }
+
 }
