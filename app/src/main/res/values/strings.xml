@@ -11,11 +11,11 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="get_in">Get in!</string>
-    <string name="log_in">Log in!</string>
+    <string name="log_in">Login</string>
     <string name="about_us">About us</string>
     <string name="title_activity_about">AboutActivity</string>
-    <string name="enter_email">Enter email</string>
-    <string name="enter_pass">Enter password</string>
+    <string name="enter_email">Email</string>
+    <string name="enter_pass">Password</string>
     <string name="alre">Already Registered? Sign in here</string>
     <string name="signup">Signup</string>
     <string name="NotAcc">Not have an account? Signup Here</string>
@@ -29,4 +29,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="logout">Logout</string>
+    <string name="save">Save</string>
+    <string name="phone_number">Mobile</string>
+    <string name="name">Name</string>
+    <string name="save_your_profile_details">Save your profile details</string>
+    <string name="page_title">connect!</string>
+    <string name="peopleavatar">peopleavatar</string>
+    <string name="people_connect">People_Connect</string>
 </resources>
