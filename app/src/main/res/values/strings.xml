@@ -18,7 +18,7 @@
     <string name="enter_pass">Password</string>
     <string name="alre">Already Registered? Sign in here</string>
     <string name="signup">Signup</string>
-    <string name="NotAcc">Not have an account? Signup Here</string>
+    <string name="NotAcc">Do not have an account? Signup Here</string>
     <string name="forpass">Forgot Password?</string>
 
     <!-- Strings used for fragments for navigation -->
@@ -37,4 +37,8 @@
     <string name="page_title">connect!</string>
     <string name="peopleavatar">peopleavatar</string>
     <string name="people_connect">People_Connect</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="reset_password">Reset password</string>
+    <string name="contact_us">Contact Us!</string>
+    <string name="connect_logo">Connect Logo</string>
 </resources>
