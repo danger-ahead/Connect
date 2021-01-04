@@ -63,26 +63,25 @@
             android:layout_margin="15dp"
             android:background="@drawable/rounded_corner"
             android:text="@string/log_in"
-            android:layout_marginVertical="10dp"
             android:textColor="@android:color/white"
             android:drawableEnd="@drawable/login" />
 
-        <TextView
+        <Button
             android:text="@string/NotAcc"
             android:id="@+id/textViewSignUp"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:layout_margin="15dp"
-            android:background="@drawable/rounded_textview"
+            android:background="@drawable/rounded_corner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
+        <Button
             android:text="@string/forpass"
             android:id="@+id/forgotpswd"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:background="@drawable/rounded_textview"
+            android:background="@drawable/rounded_corner"
             android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

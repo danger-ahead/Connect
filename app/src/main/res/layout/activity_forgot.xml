@@ -20,28 +20,36 @@
         <TextView
             android:layout_width="256dp"
             android:layout_height="88dp"
-            android:text="Forgot Password?"
-            android:textColor="#000000"
+            android:text="@string/forgot_password"
             android:textSize="30sp" />
 
-        <EditText
-            android:id="@+id/editForgotEmail"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="73dp"
-            android:hint="Enter email"
-            android:inputType="textEmailAddress" />
+            android:hint="@string/enter_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:inputType="textEmailAddress" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editForgotEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/buttonreset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Reset password" />
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/reset_password" />
         <Button
             android:id="@+id/buttoncontact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Contact Us!" />
+            android:textColor="@color/colorAccent"
+            android:text="@string/contact_us" />
 
     </LinearLayout>
 
