@@ -34,6 +34,7 @@ public class Profile extends Fragment {
     }
     public void logout(){
         firebaseAuth.signOut();
+        getActivity().finish();
         getActivity().onBackPressed();
     }
 }
